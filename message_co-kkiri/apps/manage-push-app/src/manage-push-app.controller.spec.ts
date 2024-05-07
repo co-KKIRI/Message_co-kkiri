@@ -11,7 +11,9 @@ describe('ManagePushAppController', () => {
       providers: [ManagePushAppService],
     }).compile();
 
-    managePushAppController = app.get<ManagePushAppController>(ManagePushAppController);
+    managePushAppController = app.get<ManagePushAppController>(
+      ManagePushAppController,
+    );
   });
 
   describe('root', () => {
