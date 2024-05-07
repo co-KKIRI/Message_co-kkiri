@@ -1,8 +1,32 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src",
+  "sourceRoot": "apps/message_co-kkiri/src",
   "compilerOptions": {
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/message_co-kkiri/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/message_co-kkiri",
+  "projects": {
+    "message_co-kkiri": {
+      "type": "application",
+      "root": "apps/message_co-kkiri",
+      "entryFile": "main",
+      "sourceRoot": "apps/message_co-kkiri/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/message_co-kkiri/tsconfig.app.json"
+      }
+    },
+    "manage-push-app": {
+      "type": "application",
+      "root": "apps/manage-push-app",
+      "entryFile": "main",
+      "sourceRoot": "apps/manage-push-app/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/manage-push-app/tsconfig.app.json"
+      }
+    }
   }
 }
