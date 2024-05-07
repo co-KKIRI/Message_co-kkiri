@@ -4,7 +4,11 @@ import { ManagePushAppService } from './manage-push-app.service';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [ConfigModule.forRoot()],
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: ['.env', '../.env'],
+    }),
+  ],
   controllers: [ManagePushAppController],
   providers: [ManagePushAppService],
 })
