@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ManagePushAppController } from './manage-push-app.controller';
 import { ManagePushAppService } from './manage-push-app.service';
 import { ConfigModule } from '@nestjs/config';
+import { FirebaseService } from './firebase/firebase.service';
 
 @Module({
   imports: [
@@ -10,6 +11,6 @@ import { ConfigModule } from '@nestjs/config';
     }),
   ],
   controllers: [ManagePushAppController],
-  providers: [ManagePushAppService],
+  providers: [ManagePushAppService, FirebaseService],
 })
 export class ManagePushAppModule {}
