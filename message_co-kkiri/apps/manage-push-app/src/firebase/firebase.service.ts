@@ -10,20 +10,23 @@ export class FirebaseService {
   constructor(private configService: ConfigService) {
     if (!this.app) {
       const firebaseAdminConfig: FirebaseAdminConfig = {
-        type: this.configService.get<string>(`TYPE`),
-        projectId: this.configService.get<string>(`PROJECT_ID`),
-        privateKeyId: this.configService.get<string>(`PRIVATE_KEY_ID`),
-        privateKey: this.configService.get<string>(`PRIVATE_KEY`),
-        clientEmail: this.configService.get<string>(`CLIENT_EMAIL`),
-        clientId: this.configService.get<string>(`CLIENT_ID`),
-        authUri: this.configService.get<string>(`AUTH_URI`),
-        tokenUri: this.configService.get<string>(`TOKEN_URI`),
+        type: this.configService.get<string>(`FIREBASE_TYPE`),
+        projectId: this.configService.get<string>(`FIREBASE_PROJECT_ID`),
+        privateKeyId: this.configService.get<string>(`FIREBASE_PRIVATE_KEY_ID`),
+        privateKey: this.configService.get<string>(`FIREBASE_PRIVATE_KEY`),
+        clientEmail: this.configService.get<string>(`FIREBASE_CLIENT_EMAIL`),
+        clientId: this.configService.get<string>(`FIREBASE_CLIENT_ID`),
+        authUri: this.configService.get<string>(`FIREBASE_AUTH_URI`),
+        tokenUri: this.configService.get<string>(`FIREBASE_TOKEN_URI`),
         authProviderX509CertUrl: this.configService.get<string>(
           `AUTH_PROVIDER_X509_CERT_URL`,
         ),
-        clientX509CertUrl:
-          this.configService.get<string>(`CLIENT_X509_CERT_URL`),
-        universeDomain: this.configService.get<string>(`UNIVERSE_DOMAIN`),
+        clientX509CertUrl: this.configService.get<string>(
+          `FIREBASE_CLIENT_X509_CERT_URL`,
+        ),
+        universeDomain: this.configService.get<string>(
+          `FIREBASE_UNIVERSE_DOMAIN`,
+        ),
       };
 
       try {
