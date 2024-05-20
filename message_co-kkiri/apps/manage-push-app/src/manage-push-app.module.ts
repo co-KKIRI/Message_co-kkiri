@@ -7,7 +7,7 @@ import { FirebaseService } from './firebase/firebase.service';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['.env', '../.env'],
+      envFilePath: ['.env', '.firebase.env'],
     }),
   ],
   controllers: [ManagePushAppController],
