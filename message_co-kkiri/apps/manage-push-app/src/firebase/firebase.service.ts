@@ -1,4 +1,4 @@
-import admin from 'firebase-admin/app';
+import * as admin from 'firebase-admin';
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { FirebaseAdminConfig } from './interfaces/firebase.interface';
@@ -13,13 +13,15 @@ export class FirebaseService {
         type: this.configService.get<string>(`FIREBASE_TYPE`),
         projectId: this.configService.get<string>(`FIREBASE_PROJECT_ID`),
         privateKeyId: this.configService.get<string>(`FIREBASE_PRIVATE_KEY_ID`),
-        privateKey: this.configService.get<string>(`FIREBASE_PRIVATE_KEY`),
+        privateKey: this.configService
+          .get<string>(`FIREBASE_PRIVATE_KEY`)
+          .replace(/\\n/g, '\n'),
         clientEmail: this.configService.get<string>(`FIREBASE_CLIENT_EMAIL`),
         clientId: this.configService.get<string>(`FIREBASE_CLIENT_ID`),
         authUri: this.configService.get<string>(`FIREBASE_AUTH_URI`),
         tokenUri: this.configService.get<string>(`FIREBASE_TOKEN_URI`),
         authProviderX509CertUrl: this.configService.get<string>(
-          `AUTH_PROVIDER_X509_CERT_URL`,
+          `FIREBASE_AUTH_PROVIDER_X509_CERT_URL`,
         ),
         clientX509CertUrl: this.configService.get<string>(
           `FIREBASE_CLIENT_X509_CERT_URL`,
@@ -31,7 +33,7 @@ export class FirebaseService {
 
       try {
         this.app = admin.initializeApp({
-          credential: admin.cert(firebaseAdminConfig),
+          credential: admin.credential.cert(firebaseAdminConfig),
         });
 
         Logger.log('Firebase Service Start');
