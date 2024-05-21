@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin';
-import { Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable, Logger, LoggerService } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { FirebaseAdminConfig } from './interfaces/firebase.interface';
 
@@ -7,7 +7,10 @@ import { FirebaseAdminConfig } from './interfaces/firebase.interface';
 export class FirebaseService {
   private readonly app;
 
-  constructor(private configService: ConfigService) {
+  constructor(
+    private readonly configService: ConfigService,
+    @Inject(Logger) private readonly logger: LoggerService,
+  ) {
     if (!this.app) {
       const firebaseAdminConfig: FirebaseAdminConfig = {
         type: this.configService.get<string>(`FIREBASE_TYPE`),
@@ -36,9 +39,9 @@ export class FirebaseService {
           credential: admin.credential.cert(firebaseAdminConfig),
         });
 
-        Logger.log('Firebase Service Start');
+        this.logger.log('Firebase Service Start');
       } catch (error) {
-        Logger.error(error);
+        this.logger.error(error);
       }
     }
   }
