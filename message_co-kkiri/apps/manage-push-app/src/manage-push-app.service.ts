@@ -26,8 +26,7 @@ export class ManagePushAppService {
 
     const message: TokenMessage = {
       data: {
-        score: '850',
-        time: '2:45',
+        body: '알림이 도착했어요!',
       },
       token: registrationToken,
       notification: {
